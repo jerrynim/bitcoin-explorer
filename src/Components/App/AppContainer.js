@@ -7,6 +7,9 @@ import typography from "../../typography";
 const baseStyles = () => createGlobalStyle`
     ${reset}
     ${typography}
+    a{
+        text-decoration:none!important;
+    }
 `;
 
 class AppContainer extends Component {
