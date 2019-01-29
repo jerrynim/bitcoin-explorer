@@ -23,19 +23,27 @@ const Main = styled.main`
   }
 `;
 
-const AppPresenter = () => (
-  <BrowserRouter>
-    <AppContainer>
-      <Header />
-      <Main>
-        <Switch>
-          <Route exact path={`/`} component={Home} />
-          <Route exact path={`/blocks`} component={Blocks} />
-          <Route exact path={`/transactions`} component={Transactions} />
-        </Switch>
-      </Main>
-    </AppContainer>
-  </BrowserRouter>
-);
+const AppPresenter = ({ isLoading }) => {
+  return (
+    <BrowserRouter>
+      <AppContainer>
+        <Header />
+        {!isLoading && (
+          <Main>
+            <Switch>
+              <Route exact path={`/`} component={Home} />
+              <Route exact path={`/blocks`} component={Blocks} />
+              <Route exact path={`/transactions`} component={Transactions} />
+            </Switch>
+          </Main>
+        )}
+      </AppContainer>
+    </BrowserRouter>
+  );
+};
+
+AppPresenter.PropTypes = {
+  isLoading: PropTypes.bool.isRequired
+};
 
 export default AppPresenter;
