@@ -8,8 +8,8 @@ import { API_URL } from "../../constants";
 import flatten from "lodash.flatten";
 
 const baseStyles = () => createGlobalStyle`
-    ${reset}
-    ${typography}
+    ${reset};
+    ${typography};
     a{
         text-decoration:none!important;
     }
@@ -22,7 +22,10 @@ class AppContainer extends Component {
   componentDidMount = () => {
     this._getData();
   };
-
+  render() {
+    baseStyles();
+    return <AppPresenter {...this.state} />;
+  }
   _getData = async () => {
     const request = await axios.get(`${API_URL}/blocks`);
     const blocks = request.data;
@@ -33,13 +36,7 @@ class AppContainer extends Component {
       transactions: txs,
       isLoading: false
     });
-    console.log(request);
   };
-
-  render() {
-    baseStyles();
-    return <AppPresenter {...this.state} />;
-  }
 }
 
 export default AppContainer;
